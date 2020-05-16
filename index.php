@@ -1,11 +1,13 @@
 <?php
 
+$config = include 'config.php';
+
 function getTitle()
 {
     return 'Anasayfa';
 }
 
-$house = file_get_contents('https://www.potterapi.com/v1/sortingHat?key=$2a$10$UL7Usqkb3s/o8PPz.ZOxxe3JJtOKObSTkaxqdeONfjp4RhKdMDQuS');
+$house = file_get_contents("https://www.potterapi.com/v1/sortingHat?key={$config['api_key']}");
 
 ?>
 

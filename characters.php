@@ -9,12 +9,18 @@ function getTitle()
 
 $characters = file_get_contents("https://www.potterapi.com/v1/characters?key={$config['api_key']}");
 
-$characterNames = [];
+$characterDetails = [];
 
 $characters = json_decode($characters, true);
 
 foreach ($characters as $character) {
-    $characterNames[] = $character['name'];
+    $characterDetails[] = [
+        'name' => $character['name'],
+        'house' => $character['house'] ?? '',
+        'role' => $character['role'] ?? '',
+        'bloodStatus' => $character['bloodStatus'],
+        'species' => $character['species']
+    ];
 }
 
 ?>
@@ -26,8 +32,6 @@ include 'header.php';
 include 'navbar.php';
 
 ?>
-
-
 
 <div class="pt-5">
 
@@ -55,17 +59,21 @@ include 'navbar.php';
                 <tbody>
                 <?php
                 $counter = 1;
-                foreach ($characterNames as $name) {
-                    ?>
-                    <tr>
-                        <th scope="row"><?php echo $counter++; ?> </th>
-                        <td><?php echo $name; ?></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                <?php } ?>
+                foreach ($characterDetails as $detail):
+                    if (isset($_GET['house']) && $_GET['house'] == strtolower($detail['house'])) {
+                ?>
+                        <tr>
+                            <th scope="row"><?php echo $counter++; ?> </th>
+                            <td><?php echo $detail['name']; ?></td>
+                            <td><?php echo $detail['role']; ?></td>
+                            <td><?php echo $detail['house']; ?></td>
+                            <td><?php echo $detail['bloodStatus']; ?></td>
+                            <td><?php echo $detail['species']; ?></td>
+                        </tr>
+                <?php
+                    }
+                endforeach;
+                ?>
                 </tbody>
             </table>
         </div>
