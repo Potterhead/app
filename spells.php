@@ -10,10 +10,15 @@ function getTitle()
 $spells = file_get_contents("https://www.potterapi.com/v1/spells?key={$config['api_key']}");
 
 $decodedSpells = json_decode($spells, true);
-$spellNames = [];
+
+$spellDetails = [];
 
 foreach ($decodedSpells as $spell) {
-    $spellNames[] = $spell['spell'];
+    $spellDetails[] = [
+        'spell' => $spell['spell'],
+        'type' => $spell['type'],
+        'effect' => $spell['effect'],
+    ];
 }
 
 ?>
@@ -50,13 +55,13 @@ include 'navbar.php';
                 <tbody>
                 <?php
                 $counter = 1;
-                foreach ($spellNames as $name) {
+                foreach ($spellDetails as $detail) {
                     ?>
                     <tr>
                         <th scope="row"><?php echo $counter++; ?> </th>
-                        <td><?php echo $name; ?></td>
-                        <td></td>
-                        <td></td>
+                        <td><?php echo $detail['spell']; ?></td>
+                        <td><?php echo $detail['type']; ?></td>
+                        <td><?php echo $detail['effect']; ?></td>
                     </tr>
                 <?php } ?>
                 </tbody>
