@@ -10,4 +10,4 @@
     
     <title><?php echo getTitle() ?></title>
 </head>
-<body>
+<body class="bg-light">

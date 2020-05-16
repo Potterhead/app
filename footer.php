@@ -1,6 +1,6 @@
-<footer class="footer mt-auto py-3">
-    <div class="container">
-        <span class="text-muted">Copyright <?php echo date('Y'); ?>. All Rights Reserved.</span>
+<footer class="page-footer font-small blue">
+    <div class="footer-copyright text-center py-3">© <?php echo date('Y'); ?> Copyright.
+        All Rights Reserved
     </div>
 </footer>
 
