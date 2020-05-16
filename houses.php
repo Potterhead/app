@@ -1,11 +1,13 @@
 <?php
 
+$config = include 'config.php';
+
 function getTitle()
 {
     return 'Evler';
 }
 
-$houses = file_get_contents('https://www.potterapi.com/v1/houses?key=$2a$10$UL7Usqkb3s/o8PPz.ZOxxe3JJtOKObSTkaxqdeONfjp4RhKdMDQuS');
+$houses = file_get_contents("https://www.potterapi.com/v1/houses?key={$config['api_key']}");
 
 $decodedHouses = json_decode($houses, true);
 
