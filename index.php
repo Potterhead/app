@@ -7,7 +7,7 @@ function getTitle()
     return 'Anasayfa';
 }
 
-$house = file_get_contents("https://www.potterapi.com/v1/sortingHat?key={$config['api_key']}");
+$house = file_get_contents(addslashes("https://www.potterapi.com/v1/sortingHat?key={$config['api_key']}"));
 
 ?>
 
@@ -33,7 +33,11 @@ include_once 'navbar.php';
         <div class="bg-white p-5">
             <div class="col-md-12">
 
-
+                <?php
+                // api'dan gelen çift tırnak işaretlerini kaldırmak için yazıldı
+                $house = str_replace("\"","", $house);
+                ?>
+                <img class="card-img-top" src="assets/images/<?php echo $house?>.jpg" alt="<?php echo $house; ?>">
                 <p>Tebrikler! Seçmen şapka sizi <strong><?php echo $house; ?></strong> evine yerleştirdi.</p>
 
             </div>

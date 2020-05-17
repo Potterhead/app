@@ -11,10 +11,20 @@ $houses = file_get_contents("https://www.potterapi.com/v1/houses?key={$config['a
 
 $decodedHouses = json_decode($houses, true);
 
-$houseNames = [];
+$houseNamesAndIDs = [];
+$houseInfos = [];
 
 foreach ($decodedHouses as $house) {
-    $houseNames[] = $house['name'];
+    $houseNamesAndIDs[] = [
+        $house['_id'] => $house['name']
+    ];
+    $houseInfos[] = [
+        'kurucusu' => $house['founder'],
+        'evinBasi' => $house['headOfHouse'],
+        'maskotu' => $house['mascot'],
+        'evinHayaleti' => $house['houseGhost'],
+        'okulu' => $house['school']
+    ];
 }
 
 ?>
@@ -39,25 +49,40 @@ include 'navbar.php';
         </section>
 
         <div class="row bg-white p-5">
-            <?php  foreach ($houseNames as $houseName) { ?>
+            <?php
+            $sayac=0;
+            foreach ($houseNamesAndIDs as $details) {
+                foreach ($details as $houseId => $houseName){?>
                 <div class="col-md-6">
                     <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" src="https://via.placeholder.com/500x200" height="200" width="500" alt="Card image cap">
+                        <img class="card-img-top" src="assets/images/<?php echo $houseName?>.jpg" alt="<?php echo $houseName; ?>">
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $houseName; ?></h5>
                             <p class="card-text">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut egestas diam, a fermentum leo.
+                                <strong>Evin Kurucusu:</strong> <?php echo $houseInfos[$sayac]['kurucusu']; ?>
+                            </p>
+                            <p class="card-text">
+                                <strong>Evin Başı &nbsp;&emsp;&emsp;:</strong> <?php echo $houseInfos[$sayac]['evinBasi']; ?>
+                            </p>
+                            <p class="card-text">
+                                <strong>Evin Maskotu  :</strong> <?php echo $houseInfos[$sayac]['maskotu']; ?>
+                            </p>
+                            <p class="card-text">
+                                <strong> Evin Hayaleti :</strong> <?php echo $houseInfos[$sayac]['evinHayaleti']; ?>
+                            </p>
+                            <p class="card-text">
+                                <strong> Okul &emsp;&emsp;&emsp;&emsp;:</strong> <?php echo $houseInfos[$sayac]['okulu']; ?>
                             </p>
                             <div class="justify-content-between align-items-center">
                                 <div class="btn-group float-right">
-                                    <a href="characters.php?house=<?php echo strtolower($houseName); ?>" class="btn btn-sm btn-outline-secondary">Show Students</a>
+                                    <a href="characters.php?house=<?php echo $houseId; ?>" class="btn btn-sm btn-outline-secondary">Show Students</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-            <?php } ?>
+            <?php $sayac++; }} ?>
         </div>
     </div>
 </div>
