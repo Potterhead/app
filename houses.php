@@ -50,28 +50,28 @@ include 'navbar.php';
 
         <div class="row bg-white p-5">
             <?php
+            //$houseInfos dizisinin içerisinde gezinebilmek için oluşturuldu
             $sayac=0;
             foreach ($houseNamesAndIDs as $details) {
                 foreach ($details as $houseId => $houseName){?>
                 <div class="col-md-6">
                     <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" src="assets/images/<?php echo $houseName?>.jpg" alt="<?php echo $houseName; ?>">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $houseName; ?></h5>
+                        <img class="card-img-top" src="assets/images/houses/<?php echo $houseName?>.jpg" alt="<?php echo $houseName; ?>"> <!--Alperen Keşkekoğlu-->                        <div class="card-body">
+                            <h5 align="center" class="card-title"><strong><?php if(isset($houseName)) echo strtoupper($houseName); else echo "Mevcut Değil";?></strong></h5>
                             <p class="card-text">
-                                <strong>Evin Kurucusu:</strong> <?php echo $houseInfos[$sayac]['kurucusu']; ?>
+                                <strong>Evin Kurucusu:</strong> <?php if(isset($houseInfos[$sayac]['kurucusu'])) echo $houseInfos[$sayac]['kurucusu']; else echo "Mevcut Değil"; ?>
                             </p>
                             <p class="card-text">
-                                <strong>Evin Başı &nbsp;&emsp;&emsp;:</strong> <?php echo $houseInfos[$sayac]['evinBasi']; ?>
+                                <strong>Evin Başı &nbsp;&emsp;&emsp;:</strong> <?php if(isset($houseInfos[$sayac]['evinBasi'])) echo $houseInfos[$sayac]['evinBasi']; else echo "Mevcut Değil";?>
                             </p>
                             <p class="card-text">
-                                <strong>Evin Maskotu  :</strong> <?php echo $houseInfos[$sayac]['maskotu']; ?>
+                                <strong>Evin Maskotu  :</strong> <?php if(isset($houseInfos[$sayac]['maskotu'])) echo $houseInfos[$sayac]['maskotu']; else echo "Mevcut Değil"; ?>
                             </p>
                             <p class="card-text">
-                                <strong> Evin Hayaleti :</strong> <?php echo $houseInfos[$sayac]['evinHayaleti']; ?>
+                                <strong> Evin Hayaleti :</strong> <?php if(isset($houseInfos[$sayac]['evinHayaleti'])) echo $houseInfos[$sayac]['evinHayaleti']; else echo "Mevcut Değil";?>
                             </p>
                             <p class="card-text">
-                                <strong> Okul &emsp;&emsp;&emsp;&emsp;:</strong> <?php echo $houseInfos[$sayac]['okulu']; ?>
+                                <strong> Okul &emsp;&emsp;&emsp;&emsp;:</strong> <?php if(isset($houseInfos[$sayac]['okulu'])) echo $houseInfos[$sayac]['okulu']; else echo "Mevcut Değil"; ?>
                             </p>
                             <div class="justify-content-between align-items-center">
                                 <div class="btn-group float-right">

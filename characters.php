@@ -7,6 +7,16 @@ function getTitle()
     return 'Karakterler';
 }
 
+function translate($str,$lang1,$lang2)
+{
+    if (!empty($str)) {
+        $data = file_get_contents(preg_replace("/ /", "%20", "https://translate.yandex.net/api/v1.5/tr.json/translate?lang=$lang1-$lang2&key=trnsl.1.1.20200517T084000Z.a97e2d8c203592be.b39042ec7867756140fada1a347146fd019a32d1&text=$str"));
+        $data = json_decode($data, true);
+        echo $data['text'][0];
+    }
+}
+
+
 $characters = file_get_contents("https://www.potterapi.com/v1/characters?key={$config['api_key']}");
 
 $characterDetails = [];
@@ -83,12 +93,22 @@ include 'navbar.php';
                 ?>
                         <tr>
                             <th scope="row"><?php echo $counter++; ?> </th>
-                            <td><img style=" width: 40%; height: auto;" alt="" class="card-img-top" src="assets/images/<?php echo $detail['name']?>.jpg"></td>
-                            <td><?php echo $detail['name']; ?></td>
-                            <td><?php echo $detail['role']; ?></td>
-                            <td><?php echo $detail['house']; ?></td>
-                            <td><?php echo $detail['bloodStatus']; ?></td>
-                            <td><?php echo $detail['species']; ?></td>
+                            <td><img style=" width: 40%; height: auto;" alt="" class="card-img-top" src="assets/images/characters/<?php echo $detail['name']?>.jpg"></td>
+                            <td><?php echo $detail['name'];?></td>
+                            <td><?php echo $detail['role'];?></td>
+                            <td><?php echo $detail['house'];?></td>
+                            <td><?php echo $detail['bloodStatus'];?></td>
+                            <td><?php echo $detail['species'];?></td>
+                            <!--
+                            Translate API için kullandım ama biraz yavaş yüklendiği için yorum satırı içerisine aldım
+                            <th scope="row"><?//php echo $counter++; ?> </th>
+                            <td><img style=" width: 40%; height: auto;" alt="" class="card-img-top" src="assets/images/characters/<?//php echo $detail['name']?>.jpg"></td>
+                            <td><?//php echo $detail['name'];?></td>
+                            <td><?//php translate("".$detail['role'], "en", "tr");?></td>
+                            <td><?//php echo $detail['house'];?></td>
+                            <td><?//php translate("".$detail['bloodStatus'], "en", "tr");?></td>
+                            <td><?//php translate("".$detail['species'], "en", "tr");?></td>
+                            -->
                         </tr>
                 <?php
                     }
@@ -110,12 +130,22 @@ include 'navbar.php';
                                 ?>
                                 <tr>
                                     <th scope="row"><?php echo $counter++; ?> </th>
-                                    <td><img style=" width: 40%; height: auto;" alt="" class="card-img-top" src="assets/images/<?php echo $detail['name']?>.jpg"></td>
-                                    <td><?php echo $detail['name']; ?></td>
-                                    <td><?php echo $detail['role']; ?></td>
-                                    <td><?php echo $detail['house']; ?></td>
-                                    <td><?php echo $detail['bloodStatus']; ?></td>
-                                    <td><?php echo $detail['species']; ?></td>
+                                    <td><img style=" width: 40%; height: auto;" alt="" class="card-img-top" src="assets/images/characters/<?php echo $detail['name']?>.jpg"></td>
+                                    <td><?php echo $detail['name'];?></td>
+                                    <td><?php echo $detail['role'];?></td>
+                                    <td><?php echo $detail['house'];?></td>
+                                    <td><?php echo $detail['bloodStatus'];?></td>
+                                    <td><?php echo $detail['species'];?></td>
+                                    <!--
+                                    Translate API için kullandım ama biraz yavaş yüklendiği için yorum satırı içerisine aldım
+                                    <th scope="row"><?//php echo $counter++; ?> </th>
+                                    <td><img style=" width: 40%; height: auto;" alt="" class="card-img-top" src="assets/images/characters/<?//php echo $detail['name']?>.jpg"></td>
+                                    <td><?//php echo $detail['name'];?></td>
+                                    <td><?//php translate("".$detail['role'], "en", "tr");?></td>
+                                    <td><?//php echo $detail['house'];?></td>
+                                    <td><?//php translate("".$detail['bloodStatus'], "en", "tr");?></td>
+                                    <td><?//php translate("".$detail['species'], "en", "tr");?></td>
+                                    -->
                                 </tr>
                                 <?php
                                 break;

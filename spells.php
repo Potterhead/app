@@ -47,9 +47,9 @@ include 'navbar.php';
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Spell</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Effect</th>
+                    <th scope="col">Büyü</th>
+                    <th scope="col">Tür</th>
+                    <th scope="col">Etki</th>
                 </tr>
                 </thead>
                 <tbody>
