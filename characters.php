@@ -60,7 +60,7 @@ include 'navbar.php';
                 <?php
                 $counter = 1;
                 foreach ($characterDetails as $detail):
-                    if (isset($_GET['house']) && $_GET['house'] == strtolower($detail['house'])) {
+                    if (!isset($_GET['house']) || $_GET['house'] == strtolower($detail['house'])) {
                 ?>
                         <tr>
                             <th scope="row"><?php echo $counter++; ?> </th>
