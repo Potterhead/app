@@ -10,12 +10,16 @@ function getTitle()
 $houses = file_get_contents("https://www.potterapi.com/v1/houses?key={$config['api_key']}");
 
 $decodedHouses = json_decode($houses, true);
-
-$houseNames = [];
+$houseDetails = [];
 
 foreach ($decodedHouses as $house) {
-    $houseNames[] = $house['name'];
+    $houseDetails[] = [
+        'name' => $house['name'],
+        'founder' => $house['founder'],
+        'headOfHouse' => $house['headOfHouse']
+    ];
 }
+
 
 ?>
 
@@ -39,18 +43,22 @@ include 'navbar.php';
         </section>
 
         <div class="row bg-white p-5">
-            <?php  foreach ($houseNames as $houseName) { ?>
+            <?php  foreach ($houseDetails as $detail) { ?>
                 <div class="col-md-6">
                     <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" src="https://via.placeholder.com/500x200" height="200" width="500" alt="Card image cap">
+                        <img class="card-img-top" src="/assets/images/<?php echo $detail['name'] ?>.jpg" alt="<?php echo $detail['name']; ?>">
                         <div class="card-body">
-                            <h5 class="card-title"><?php echo $houseName; ?></h5>
+                            <h5 class="card-title"><?php echo $detail['name']; ?></h5>
                             <p class="card-text">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut egestas diam, a fermentum leo.
+                                <ul>
+                                    <li><strong>Founder: </strong><?php echo $detail['founder']; ?></li>
+                                    <li><strong>Head of House: </strong><?php echo $detail['headOfHouse']; ?></li>
+                                </ul>
+
                             </p>
                             <div class="justify-content-between align-items-center">
                                 <div class="btn-group float-right">
-                                    <a href="characters.php?house=<?php echo strtolower($houseName); ?>" class="btn btn-sm btn-outline-secondary">Show Students</a>
+                                    <a href="characters.php?house=<?php echo strtolower($detail['name']); ?>" class="btn btn-sm btn-outline-secondary">Show Students</a>
                                 </div>
                             </div>
                         </div>
