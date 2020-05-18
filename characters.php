@@ -9,6 +9,7 @@ function getTitle()
 
 $apiUrl = "https://www.potterapi.com/v1/characters?key={$config['api_key']}";
 
+//hello
 if (isset($_GET['house'])) {
     $validHouses = ['gryffindor', 'ravenclaw', 'slytherin', 'hufflepuff'];
     
