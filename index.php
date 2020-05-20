@@ -66,16 +66,16 @@ include_once 'navbar.php';
                         <span class="mb-3">Ufak Bilgiler</span>
                         <ul class="mt-3">
                             <li>
-                                <strong>Evin Kurucusu:</strong> <?php echo $houseDetails['founder'] ?? "" ?>
+                                <strong>Bina Kurucusu:</strong> <?php echo $houseDetails['founder'] ?? "" ?>
                             </li>
                             <li>
                                 <strong>Bina Müdürü:</strong> <?php echo $houseDetails['headOfHouse'] ?? "" ?>
                             </li>
                             <li>
-                                <strong>Evin Hayaleti:</strong> <?php echo $houseDetails['houseGhost'] ?? "" ?>
+                                <strong>Bina Hayaleti:</strong> <?php echo $houseDetails['houseGhost'] ?? "" ?>
                             </li>
                             <li>
-                                <strong>Evin Maskotu:</strong> <?php echo $houseDetails['mascot'] ?? "" ?>
+                                <strong>Bina Maskotu:</strong> <?php echo $houseDetails['mascot'] ?? "" ?>
                             </li>
                         </ul>
                     </div>

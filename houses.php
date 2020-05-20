@@ -55,16 +55,16 @@ include 'navbar.php';
                         <div class="card-body">
                             <h5 align="center" class="card-title"><strong><?php echo strtoupper($detail['name']); ?></strong></h5>
                             <p class="card-text">
-                                <strong>Evin Kurucusu:</strong> <?php echo $detail['founder']; ?>
+                                <strong>Bina Kurucusu:</strong> <?php echo $detail['founder']; ?>
                             </p>
                             <p class="card-text">
                                 <strong>Bina Müdürü:</strong> <?php echo $detail['headOfHouse']; ?>
                             </p>
                             <p class="card-text">
-                                <strong>Evin Maskotu  :</strong> <?php echo $detail['mascot']; ?>
+                                <strong>Bina Maskotu  :</strong> <?php echo $detail['mascot']; ?>
                             </p>
                             <p class="card-text">
-                                <strong>Evin Hayaleti :</strong> <?php echo $detail['houseGhost']; ?>
+                                <strong>Bina Hayaleti :</strong> <?php echo $detail['houseGhost']; ?>
                             </p>
                             <p class="card-text">
                                 <strong>Okul:</strong> <?php echo $detail['school']; ?>

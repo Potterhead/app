@@ -13,7 +13,7 @@ if (isset($_GET['house'])) {
 
     $validHouses = $config['validHouses'];
     if (!in_array($_GET['house'], $validHouses)) {
-        exit('Böyle bir ev yok');
+        exit('Böyle bir bina yok');
     }
 
     $apiUrl .= ($_GET['house'] ? "&house=" . ucfirst($_GET['house']) : '');
