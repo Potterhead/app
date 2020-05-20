@@ -33,8 +33,12 @@ include_once 'navbar.php';
         <div class="bg-white p-5">
             <div class="col-md-12">
 
-
-                <p>Tebrikler! Seçmen şapka sizi <strong><?php echo $house; ?></strong> evine yerleştirdi.</p>
+                <?php
+                // api'dan gelen çift tırnak işaretlerini kaldırmak için yazıldı
+                $house = str_replace("\"","", $house);
+                ?>
+                <p>Tebrikler! Seçmen şapka sizi <strong><a href="houses.php"><?php echo $house; ?></a></strong> evine yerleştirdi.</p>
+                <img class="card-img-top" src="assets/images/houses/<?php echo $house?>.jpg" alt="<?php echo $house; ?>">
 
             </div>
         </div>
