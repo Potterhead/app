@@ -9,6 +9,35 @@ function getTitle()
 
 $house = file_get_contents("https://www.potterapi.com/v1/sortingHat?key={$config['api_key']}");
 
+$house = str_replace("\"", "", strtolower($house));
+
+$validHouses = $config['validHouses'];
+
+$houseId =  array_search($house, $validHouses);
+$houseInformation = file_get_contents("https://www.potterapi.com/v1/houses/{$houseId}?key={$config['api_key']}");
+
+$houseDetails = json_decode($houseInformation, 1)[0] ?? [];
+
+function houseColor($house) {
+    switch ($house) {
+        case "gryffindor":
+            $color = "#991d3c";
+            break;
+        case "ravenclaw":
+            $color = "#025ab3";
+            break;
+        case "hufflepuff":
+            $color = "#e8af26";
+            break;
+        case "slyterin":
+            $color = "#164235";
+            break;
+        default:
+            $color = "#000";
+    }
+    return $color;
+}
+
 ?>
 
 <?php
@@ -18,7 +47,6 @@ include_once 'header.php';
 include_once 'navbar.php';
 
 ?>
-
 
 <div class="pt-5">
 
@@ -32,14 +60,29 @@ include_once 'navbar.php';
 
         <div class="bg-white p-5">
             <div class="col-md-12">
-
-                <?php
-                // api'dan gelen çift tırnak işaretlerini kaldırmak için yazıldı
-                $house = str_replace("\"","", $house);
-                ?>
-                <p>Tebrikler! Seçmen şapka sizi <strong><a href="houses.php"><?php echo $house; ?></a></strong> evine yerleştirdi.</p>
-                <img class="card-img-top" src="assets/images/houses/<?php echo $house?>.jpg" alt="<?php echo $house; ?>">
-
+                <div class="row">
+                    <div class="col-6">
+                        <p>Tebrikler! Seçmen şapka sizi <strong><a href="houses.php" style="color: <?php echo houseColor($house); ?>"><?php echo $house; ?></a></strong> evine yerleştirdi.</p>
+                        <span class="mb-3">Ufak Bilgiler</span>
+                        <ul class="mt-3">
+                            <li>
+                                <strong>Evin Kurucusu:</strong> <?php echo $houseDetails['founder'] ?? "" ?>
+                            </li>
+                            <li>
+                                <strong>Bina Müdürü:</strong> <?php echo $houseDetails['headOfHouse'] ?? "" ?>
+                            </li>
+                            <li>
+                                <strong>Evin Hayaleti:</strong> <?php echo $houseDetails['houseGhost'] ?? "" ?>
+                            </li>
+                            <li>
+                                <strong>Evin Maskotu:</strong> <?php echo $houseDetails['mascot'] ?? "" ?>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-6">
+                        <img class="card-img-top" src="assets/images/houses/<?php echo $house ?>.jpg" alt="<?php echo $house; ?>">
+                    </div>
+                </div>
             </div>
         </div>
     </div>

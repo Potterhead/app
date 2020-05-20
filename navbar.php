@@ -16,7 +16,7 @@
                         <a class="nav-link <?php echo ($_SERVER['REQUEST_URI'] == '/characters.php')? 'active' : ''?>" href="characters.php">Karakterler</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php echo ($_SERVER['REQUEST_URI'] == '/houses.php')? 'active' : ''?>" href="houses.php">Evler</a>
+                        <a class="nav-link <?php echo ($_SERVER['REQUEST_URI'] == '/houses.php')? 'active' : ''?>" href="houses.php">Binalar</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link <?php echo ($_SERVER['REQUEST_URI'] == '/spells.php')? 'active' : ''?>" href="spells.php">Büyüler</a>
