@@ -4,7 +4,7 @@ $config = include 'config.php';
 
 function getTitle()
 {
-    return 'Evler';
+    return 'Binalar';
 }
 
 $houses = file_get_contents("https://www.potterapi.com/v1/houses?key={$config['api_key']}");
