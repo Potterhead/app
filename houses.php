@@ -51,7 +51,7 @@ include 'navbar.php';
             ?>
                 <div class="col-md-6">
                     <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" src="assets/images/houses/<?php echo $detail['name'] ?>.jpg" alt="<?php echo $detail['name']; ?>">
+                        <img class="card-img-top" src="assets/images/houses/<?php echo strtolower($detail['name']) ?>.jpg" alt="<?php echo $detail['name']; ?>">
                         <div class="card-body">
                             <h5 align="center" class="card-title"><strong><?php echo strtoupper($detail['name']); ?></strong></h5>
                             <p class="card-text">
