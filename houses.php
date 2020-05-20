@@ -29,7 +29,7 @@ foreach ($decodedHouses as $house) {
         'evinBasi' => $house['headOfHouse'],
         'maskotu' => $house['mascot'],
         'evinHayaleti' => $house['houseGhost'],
-        'okulu' => $house['school']
+        'okulu' => $house['school'] ?? null,
     ];
 }
 
@@ -81,7 +81,7 @@ include 'navbar.php';
                             </p>
                             <div class="justify-content-between align-items-center">
                                 <div class="btn-group float-right">
-                                    <a href="characters.php?house=<?php echo $houseId; ?>" class="btn btn-sm btn-outline-secondary">Show Students</a>
+                                    <a href="characters.php?house=<?php echo strtolower($houseName); ?>" class="btn btn-sm btn-outline-secondary">Show Students</a>
                                 </div>
                             </div>
                         </div>

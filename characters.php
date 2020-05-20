@@ -11,8 +11,13 @@ $apiUrl = "https://www.potterapi.com/v1/characters?key={$config['api_key']}";
 
 //hello
 if (isset($_GET['house'])) {
-    $validHouses = ['gryffindor', 'ravenclaw', 'slytherin', 'hufflepuff'];
-
+    
+    $validHouses = [
+        '5a05e2b252f721a3cf2ea33f' => 'gryffindor',
+        '5a05da69d45bd0a11bd5e06f' => 'ravenclaw',
+        '5a05dc8cd45bd0a11bd5e071' => 'slytherin',
+        '5a05dc58d45bd0a11bd5e070' => 'hufflepuff',
+    ];
     if (!in_array($_GET['house'], $validHouses)) {
         exit('Böyle bir ev yok');
     }
@@ -94,8 +99,9 @@ include 'navbar.php';
                     $parts = parse_url($link);
                     $query = array();
                     parse_str($parts['query'], $query);
-                    $houseID=$query['house'];
-
+                    
+                    $houseID = array_search($query['house'], $validHouses);
+                    
                     //API key'i ile belirtilen ID'deki house'a ait üye bilgilerini çekme
                     $houses = file_get_contents("https://www.potterapi.com/v1/houses/{$houseID}?key={$config['api_key']}");
                     $houses = json_decode($houses, true);
