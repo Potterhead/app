@@ -1,42 +1,17 @@
 <?php
 
 $config = include 'config.php';
-
-function getTitle()
-{
-    return 'Anasayfa';
-}
+include 'func.php';
 
 $house = file_get_contents("https://www.potterapi.com/v1/sortingHat?key={$config['api_key']}");
 
 $house = str_replace("\"", "", strtolower($house));
 
-$validHouses = $config['validHouses'];
+$houseId =  array_search($house, houses());
 
-$houseId =  array_search($house, $validHouses);
 $houseInformation = file_get_contents("https://www.potterapi.com/v1/houses/{$houseId}?key={$config['api_key']}");
 
 $houseDetails = json_decode($houseInformation, 1)[0] ?? [];
-
-function houseColor($house) {
-    switch ($house) {
-        case "gryffindor":
-            $color = "#991d3c";
-            break;
-        case "ravenclaw":
-            $color = "#025ab3";
-            break;
-        case "hufflepuff":
-            $color = "#e8af26";
-            break;
-        case "slyterin":
-            $color = "#164235";
-            break;
-        default:
-            $color = "#000";
-    }
-    return $color;
-}
 
 ?>
 
@@ -62,7 +37,7 @@ include_once 'navbar.php';
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-6">
-                        <p>Tebrikler! Seçmen şapka sizi <strong><a href="houses.php" style="color: <?php echo houseColor($house); ?>"><?php echo $house; ?></a></strong> evine yerleştirdi.</p>
+                        <p>Tebrikler! Seçmen şapka sizi <strong><a href="houses.php" style="background-color: <?php echo houseColor($house); ?>; color: #fff;"><?php echo $house; ?></a></strong> evine yerleştirdi.</p>
                         <span class="mb-3">Ufak Bilgiler</span>
                         <ul class="mt-3">
                             <li>
