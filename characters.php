@@ -1,3 +1,9 @@
+<style>
+  td{border-right: 1px solid #dee2e6;text-align: center; vertical-align: middle !important;}
+  th{text-align: center !important;}
+  tr:nth-child(odd){background-color: #efefefa1;}
+  thead tr:first-child{background-color: #fff;}
+</style>
 <?php
 
 $config = include 'config.php';
@@ -75,6 +81,7 @@ include 'navbar.php';
                 </tr>
                 </thead>
                 <tbody>
+
                 <?php
                 foreach ($characterDetails as $detail):
                 ?>

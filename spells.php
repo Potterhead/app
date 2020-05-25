@@ -1,7 +1,13 @@
+<style>
+  td{border-right: 1px solid #dee2e6;text-align: center;}
+  th{text-align: center !important;}
+  tr:nth-child(odd){background-color: #efefefa1;}
+  thead tr:first-child{background-color: #fff;}
+</style>
 <?php
 
 $config = include 'config.php';
-
+include 'Spell.php';
 function getTitle()
 {
     return 'Büyüler';
@@ -13,20 +19,28 @@ $decodedSpells = json_decode($spells, true);
 
 $spellDetails = [];
 
-foreach ($decodedSpells as $spell) {
-    $spellDetails[] = [
-        'spell' => $spell['spell'],
-        'type' => $spell['type'],
-        'effect' => $spell['effect'],
-    ];
+foreach ($decodedSpells as $decode) {
+    $spell = new Spell();
+    $spell->spell = $decode['spell'];
+
+    try {
+      $spell->setType($decode['type']);
+    } catch (SpellNotFound $exception) {
+      die($exception->getMessage());
+    }
+
+    $spell->effect = $decode['effect'];
+    $spellDetails[] = $spell;
+    // die(var_dump($spellDetails));
 }
+
+
 
 ?>
 
 <?php
 
 include 'header.php';
-
 include 'navbar.php';
 
 ?>
@@ -59,9 +73,9 @@ include 'navbar.php';
                     ?>
                     <tr>
                         <th scope="row"><?php echo $counter++; ?> </th>
-                        <td><?php echo $detail['spell']; ?></td>
-                        <td><?php echo $detail['type']; ?></td>
-                        <td><?php echo $detail['effect']; ?></td>
+                        <td><?php echo $detail->spell; ?></td>
+                        <td><?php echo $detail->type; ?></td>
+                        <td><?php echo $detail->effect; ?></td>
                     </tr>
                 <?php } ?>
                 </tbody>
