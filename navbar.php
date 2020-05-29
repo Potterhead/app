@@ -34,6 +34,9 @@
                     <li class="nav-item">
                         <a class="nav-link <?php echo navbarStatus("/spells.php") ? 'active' : '' ?>" href="spells.php">Büyüler</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo navbarStatus("/register.php") ? 'active' : '' ?>" href="register.php">Kayıt Ol</a>
+                    </li>
                 </ul>
             </div>
         </nav>
