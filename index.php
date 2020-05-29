@@ -37,7 +37,7 @@ include_once 'navbar.php';
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-6">
-                        <p>Tebrikler! Seçmen şapka sizi <strong><a href="houses.php" style="background-color: <?php echo houseColor($house); ?>; color: #fff;"><?php echo $house; ?></a></strong> evine yerleştirdi.</p>
+                        <p>Tebrikler! Seçmen şapka sizi <strong><a href="houses.php" style="background-color: <?php echo houseColor($house); ?>; color: #fff; padding: 4px 7px; border-radius: 7px; text-decoration: none;"><?php echo $house; ?></a></strong> evine yerleştirdi.</p>
                         <span class="mb-3">Ufak Bilgiler</span>
                         <ul class="mt-3">
                             <li>

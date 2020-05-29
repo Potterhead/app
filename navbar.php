@@ -11,7 +11,7 @@
     }
 ?>
 
-<div class="bg-white">
+<div class="bg-white" style="box-shadow: 0px 2px 5px #b1b1b175;">
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand" href="index.php">
